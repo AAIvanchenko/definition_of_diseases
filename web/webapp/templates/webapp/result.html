@@ -1,0 +1,29 @@
+{% extends 'webapp/base.html' %}
+
+{% block title %}
+  Результат
+{% endblock %}
+
+{% block content %}
+  <h1>Результат</h1>
+  <hr>
+  <div class="container mt-5">
+      {% for img, cls, prob in dict_el %}
+        <img src="{{img}}" alt="connect" style="max-height:300px">
+          <div class="card bg-light" style="max-width: 18rem">
+            <p class="card-title">{{cls}}</p>
+
+            <p class="card-title">{{ prob}}</p>
+          </div>
+          <hr>
+      {% endfor %}
+
+   </div>
+
+  <div class="container mt-5">
+    <form action="{% url 'home' %}" class="dropzone">
+              {%csrf_token%}
+              <input type="submit" class="btn btn-primary btn-lg" value= "Очистить результат">
+    </form>
+  </div>
+{% endblock %}

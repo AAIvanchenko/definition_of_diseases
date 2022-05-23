@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.template.context_processors import media
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -20,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@*c6x&gsgh9xn6vfrf7g+_(b=*43-efk4$u0*1c_o@#jc6iuj)'
+SECRET_KEY = '@*c6x&gsgh9xn6vfrf7g+_(b=*43-efk4sdasdaasd2$u0*1c_o@#jc6iuj)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'webapp.apps.WebappConfig',
+    'webapp.apps.WebappConfig'
 ]
 
 MIDDLEWARE = [
@@ -53,9 +55,23 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'web.urls'
 
 TEMPLATES = [
+    # {"BACKEND": "django_jinja.backend.Jinja2",
+    # "APP_DIRS": True,
+    #             "OPTIONS": {
+    #                 "match_extension": ".jinja",
+    #                 "match_regex": None,
+    #                 "app_dirname": "templates",
+    #                 # Can be set to "jinja2.Undefined" or any other subclass.
+    #                 "undefined": None,
+    #                 "newstyle_gettext": True,
+    #                 "extensions": [
+    #                     "jinja2.ext.loopcontrols",
+    #                 ],
+    #             },
+    #   },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR + '/templates']
+        'DIRS': [BASE_DIR + 'webapp/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -120,3 +136,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# Base url to serve media files
+MEDIA_URL = '/media/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
