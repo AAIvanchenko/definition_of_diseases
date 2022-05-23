@@ -1,0 +1,32 @@
+{% extends 'webapp/base.html' %}
+{% load  static %}
+
+{% block resources %}
+  <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+  <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+{% endblock %}
+
+{% block title %}
+  Главная страница
+{% endblock %}
+
+{% block content %}
+  <h1>Классификация больного растения по листу</h1>
+
+  <div class="container mt-5" >Загрузите изображения ниже, чтобы получить результат работы программы</div>
+
+  <div class="container mt-5">
+    <form action="{% url 'upload-file' %}" method="POST" class="dropzone">
+            {%csrf_token%}
+              <div class="fallback">
+                <input name="file" type="file" multiple />
+              </div>
+     </form>
+   </div>
+
+  <div class="container mt-5">
+      <button type="button" class="btn btn-primary btn-lg" onclick="location.href = '/result'">Результат</button>
+  </div>
+
+{% endblock %}
